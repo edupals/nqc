@@ -1,0 +1,13 @@
+Author: Slavko <linux@slavino.sk>
+Description: Add LDFLAGS
+--- a/Makefile
++++ b/Makefile
+@@ -164,7 +164,7 @@
+ 	$(MKDIR) bin
+ 
+ bin/nqc : compiler/parse.cpp $(OBJ)
+-	$(CXX) -o $@ $(OBJ) $(LIBS)
++	$(CXX) -o $@ $(OBJ) $(LIBS) $(LDFLAGS)
+ 
+ bin/mkdata : mkdata/mkdata.cpp nqc/SRecord.cpp
+ 	$(CXX) -o bin/mkdata -Inqc/ -Iplatform/ mkdata/mkdata.cpp nqc/SRecord.cpp

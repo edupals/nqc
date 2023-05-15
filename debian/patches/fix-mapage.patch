@@ -1,0 +1,48 @@
+Author: Slavko <linux@slavino.sk>
+Description: Fic /usr/doc path and apply moving file into examples subdir
+--- a/nqc-man-2.1r1-0.man
++++ b/nqc-man-2.1r1-0.man
+@@ -58,7 +58,7 @@
+ .TP
+ \fB\-I\fR\fIpath\fR
+ search \fIpath\fR for include files.  Multiple directories should be
+-seperated as normal for the platform (under Linux / Unix, that'd be "\fB\:\fR"). 
++separated as normal for the platform (under Linux / Unix, that'd be "\fB\:\fR"). 
+ Can also be set with the NQC_INCLUDE environment variable.
+ .TP
+ \fB\-L\fR[\fIfilename\fR]
+@@ -72,7 +72,7 @@
+ extension of \fI\.rcx\fR instead of \fI\.nqc\fR.
+ .TP
+ \fB\-S\fR\fIportname\fR
+-use serial port \fIportname\fR.  Under Linux, \fI/dev/ttyS0\fR is the
++use serial port \fIportname\fR.  Under Linux, \fI/dev/rcx\fR is the
+ default.  (This will differ on other platforms.)  The port can also be specified
+ via the RCX_PORT environment variable, but the command line option takes
+ precedence.
+@@ -176,10 +176,10 @@
+ .PP
+ .Y "nqc -near -firmfast firm0309.lgo"
+ .PP
+-To compile \fI/usr/doc/nqc-2.1.0/test.nqc\fR and print the resulting
++To compile \fI/usr/share/doc/nqc/examples/test.nqc\fR and print the resulting
+ bytecode listing to the screen in human-readable format:
+ .PP
+-.Y "nqc -L /usr/doc/nqc-2.1.0/test.nqc"
++.Y "nqc -L /usr/share/doc/nqc/examples/test.nqc"
+ .PP
+ (This should result in the following output under nqc 2.1.0:
+ .PP
+@@ -195,10 +195,10 @@
+ .PP
+ )
+ .SH FILES
+-Older versions of nqc required a seperate \fIrcx.nqh\fR or \fIrcx2.nqh\fR
++Older versions of nqc required a separate \fIrcx.nqh\fR or \fIrcx2.nqh\fR
+ file.  This is now integrated into the binary and no longer necessary,
+ but for reference, \fIrcx2.nqh\fR is included with the package. 
+-(If you installed the RPM, try \fI/usr/doc/nqc-2.1.0/rcx2.nqh\fR).
++(If you installed the RPM, try \fI/usr/share/doc/nqc-2.1.0/rcx2.nqh\fR).
+ .SH SEE ALSO
+ .TP
+ .I http://www.enteract.com/~dbaum/nqc/

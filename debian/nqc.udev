@@ -1,0 +1,3 @@
+SUBSYSTEM=="usb", ACTION=="add", ATTR{idVendor}=="0694", ATTR{idProduct}=="0001", \
+    SYMLINK+="rcx-%k", \
+    ENV{ID_LEGO_MINDSTORMS}="1", TAG+="uaccess"

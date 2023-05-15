@@ -1,0 +1,184 @@
+README.Debian for nqc				-*- text -*-
+=====================
+
+This version of nqc has been modified to default to device /dev/rcx
+for downloading to the LEGO Mindstorms RCX.  I recommend that you make
+a symlink from /dev/rcx to the proper serial device for your system.
+Typically, this is /dev/ttyS0 or /dev/ttyS1.  Alternatively, you can
+specify the serial device in a command-line option to the RCX
+utilities as necessary.
+
+To connect via USB, you have two options.  First, you can pass the
+command line option "-Susb" to `nqc' each time you run it.  Second,
+you can set the environment variable `RCX_PORT' to `usb', using the
+command
+
+	export RCX_PORT=usb
+
+if you use the Bourne shell, or
+
+	setenv RCX_PORT usb
+
+if you use the C shell.  You can avoid typing this command each time
+you log in by adding it to your .profile under the Bourne shell (or
+.bash_profile under Bash) or to .cshrc under the C shell.
+
+
+RCX for Linux Quick Start
+=========================
+
+Before you start writing your own programs for the RCX, you need to
+take care of a few things, explained below.  Other than the RCX
+hardware itself, this package includes almost everything you need to
+get started.  In addition, you'll need the CD that came with your
+Robotics Invention System (RIS) kit, if you haven't already downloaded
+the firmware to the RCX.
+
+Setup Hardware and Software
+---------------------------
+
+You need to set up the hardware and software that goes with your RCX
+before you can use it with the computer.  First, take the infrared
+tower and plug it into an unused serial or USB port.
+
+Serial port: If you used a serial port, note which one it is.  If
+you're not sure, you can try port 0 first, then port 1 if that doesn't
+work.  Then become root and make a symlink from /dev/rcx to the
+appropriate serial device, which is probably /dev/ttyS0 or /dev/ttyS1.
+Typical commands for doing this are shown below (substitute ttyS1 for
+ttyS0 if appropriate):
+
+	 # su
+	 Password:
+	 # cd /dev
+	 # ln -si ttyS0 rcx
+
+Note that users who are allowed to access the RCX will need permission
+to access /dev/rcx.  One way to do this is by adding these users to
+the `dialout' group, which by default under Debian GNU/Linux has
+access to serial devices.  You can add user `foo' to group `dialout'
+with the command `adduser foo dialout'.  Please note that such users
+will have full access to all system serial devices.  If this is
+undesirable then you should implement a different group system for
+device permissions.
+
+USB port: Before connecting to the RCX through a USB port, you need to
+have the proper kernel driver.  Linux kernels 2.6.1 and later include
+the Lego USB driver in the main tree.  For older kernels you'll need
+to go get it from legousb.sourceforge.net and compile and install it
+yourself; it might easier to just use a serial port connection, if
+possible.
+
+Once you have the USB tower kernel driver installed, set the
+environment variable `RCX_PORT' to `usb', using the command
+
+	export RCX_PORT=usb
+
+if you use the Bourne shell, or
+
+	setenv RCX_PORT usb
+
+if you use the C shell.  You can avoid typing this command each time
+you log in by adding it to your .profile under the Bourne shell (or
+.bash_profile under Bash) or to .cshrc under the C shell.
+
+Download Firmware
+-----------------
+
+When you first receive it, the RCX is programmed only with a very
+simple operating environment that's only suitable for testing it and
+downloading a new set of firmware.  So, the first thing you will want
+to do is download the standard LEGO firmware.
+
+If you've used any of the Windows-based LEGO interface software then
+you've probably already downloaded the standard firmware and you can
+skip this step.  If you're not sure, then look at what the RCX display
+panel says immediately after you turn it on.  If it says 0000, then
+the firmware has already been downloaded; if it says something else,
+then it probably hasn't been.
+
+For this step, you'll need the CD that came with your Mindstorms set.
+Assuming that the CD is mounted on /cdrom, you can download the
+firmware to the RCX using the following command:
+
+	 # nqc -firmware /cdrom/firm/firm0309.lgo
+
+/firm/firm0309.lgo is the name of the firmware file on my CDROM.  It
+is possible that the name of the firmware file on your own CDROM is
+different; if so, substitute its name in the command above.
+
+While the firmware is downloading a number on the panel of the RCX
+will count up from 0 to about 1600.
+
+If you have trouble downloading the firmware, then consider the
+following:
+
+	* Did you symlink the right port to /dev/rcx (or set up USB
+          correctly)?  Make sure that the port isn't in use by any
+          other device.
+
+	* Is the infrared tower working correctly?  If it is, then the
+          light on it should turn on when the firmware starts
+          downloading.
+
+	* Is the near/far switch at the base of the infrared tower set
+          correctly?  For near operation the IR tower should be 4-6
+          inches from the RCX IR receiver.
+
+	* Is the RCX turned on, with its IR receiver aimed toward the
+          IR tower, 4-6 inches away?
+
+Test Compile & Download
+-----------------------
+
+The file test.nqc is included in this package as an example of a
+simple NQC program.  To compile it and download the resultant program
+to the RCX, use the command:
+
+	# nqc -d /usr/share/doc/nqc/test.nqc
+
+where nqc is the NQC compiler, -d means to download the result to the
+RCX on /dev/rcx, and /usr/share/doc/nqc/test.nqc is the NQC file to
+compile.  If all goes well then you should see the message
+
+	  Downloading Program: complete
+
+or similar, from nqc, and NQC will return control to the shell.
+
+Test Program
+------------
+
+The program that you just downloaded to the RCX is very simple.  It
+activates a motor attached to output A and waits for a button attached
+to input 1 to be pressed.  When the button is pressed, the motor stops
+and the program terminates.
+
+Test the program to verify that it works.  If it does, then your RCX
+is operating correctly.
+
+Explore!
+--------
+
+This package includes a manpage for the nqc program that you can view
+with the command `man nqc'.  You might also want to visit the NQC
+website, which has documentation and examples for NQC.  (Previous
+versions of this package included these, but this version no longer
+does because the new versions do not include a license statement,
+making them impossible for Debian to distribute.)
+
+The NQC website is at:
+	http://www.baumfamily.org/nqc/
+This site has the NQC documentation in PDF format, the NQC FAQ, links
+to related sites, and other NQC resources.
+
+There is a NQC tutorial on Mark Overmars's site:
+	http://www.cs.uu.nl/people/markov/lego/
+This tutorial doesn't assume any programming experience.  It should be
+a good introduction for those to whom the NQC documentation is too
+terse.
+
+Another good LEGO Mindstorms resource is the Lego Mindstorms Internals
+page:
+	http://www.crynwr.com/lego-robotics/
+
+Have fun!

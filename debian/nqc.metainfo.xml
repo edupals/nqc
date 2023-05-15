@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component>
+  <id>nqc</id>
+  <metadata_license>MIT</metadata_license>
+  <name>nqc</name>
+  <summary>Not Quite C compiler for LEGO Mindstorms RCX</summary>
+  <description>
+    <p>
+The LEGO Mindstorms RCX is a Hitachi microcontroller embedded into a
+LEGO brick.  This package lets you write programs in a C-like
+language and download them to your RCX using the serial or USB
+infrared tower included with the RCX.
+    </p>
+  </description>
+  <provides>
+    <modalias>usb:v0694p0001d*</modalias>
+  </provides>
+</component>

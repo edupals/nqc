@@ -1,0 +1,2 @@
+bin/nqc usr/bin/
+debian/nqc.metainfo.xml /usr/share/metainfo

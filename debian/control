@@ -1,0 +1,20 @@
+Source: nqc
+Section: devel
+Priority: optional
+Maintainer: Debian LEGO Team <debian-lego-team@lists.alioth.debian.org>
+Uploaders:
+ Petter Reinholdtsen <pere@debian.org>
+Build-Depends: debhelper (>= 9.0.0), dpkg-dev (>= 1.16.1~), bison, flex
+Standards-Version: 4.0.1
+Homepage: http://bricxcc.sourceforge.net/nqc/
+Vcs-Git: git://anonscm.debian.org/debian-lego/nqc.git
+Vcs-Browser: https://anonscm.debian.org/cgit/debian-lego/nqc.git
+
+Package: nqc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Not Quite C compiler for LEGO Mindstorms RCX
+ The LEGO Mindstorms RCX is a Hitachi microcontroller embedded into a
+ LEGO brick.  This package lets you write programs in a C-like
+ language and download them to your RCX using the serial or USB
+ infrared tower included with the RCX.

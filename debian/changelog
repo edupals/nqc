@@ -1,0 +1,216 @@
+nqc (3.1.r6-7build1) focal; urgency=medium
+
+  * No-change rebuild for libgcc-s1 package name change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sun, 22 Mar 2020 16:51:48 +0100
+
+nqc (3.1.r6-7) unstable; urgency=medium
+
+  * Corrected install path for appstream metadata to
+    /usr/share/metainfo/.
+  * Removed template d/README.source.
+  * Fixed segfault caused by writing to read only memory segment when
+    using Swan target.  (Closes: #848962)
+  * Updated Standards-Version from 3.9.8 to 4.0.1.
+  * Adjusted fix-errors.h.patch to avoid compiler warning.
+  * Added compiler-warnings.patch to avoid some compiler warnings.
+  * Added simple autopkgtest script using all the supported compiler
+    targets.
+  * Changed package Priority from extra to optional to match the
+    Debian archive.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Thu, 17 Aug 2017 07:28:29 +0200
+
+nqc (3.1.r6-6) unstable; urgency=medium
+
+  * Fixed typo in udev rule breaking it for everyone (== -> =).
+  * Corrected section in d/gbp.conf.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Wed, 19 Oct 2016 08:46:06 +0000
+
+nqc (3.1.r6-5) unstable; urgency=medium
+
+  * Moved package under the new Debian LEGO Team umbrella and publish
+    git repo there (Closes: #815075).
+  * Added udev marker ID_LEGO_MINDSTORMS in udev rule.
+  * Added d/gbp.conf to enforce use of pristine-tar.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Tue, 11 Oct 2016 08:02:42 +0000
+
+nqc (3.1.r6-4) unstable; urgency=medium
+
+  * QA upload.
+  * Added udev rule to use console user access to the USB device for the
+    RCX unit.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Wed, 05 Oct 2016 19:53:13 +0000
+
+nqc (3.1.r6-3) unstable; urgency=medium
+
+  * QA upload.
+  * Changed maintainer to Debian QA team as package is orphaned.
+  * Updated Standards-Version from 3.9.5 to 3.9.8.
+  * Added appstream info announcing support for the Lego Mindstorms RCX.
+
+ -- Petter Reinholdtsen <pere@debian.org>  Sat, 17 Sep 2016 09:08:29 +0000
+
+nqc (3.1.r6-2) unstable; urgency=medium
+
+  * repackage after adoprion
+  * change maintainer to my self (Closes: #697553)
+  * bump standards version to 3.9.5
+  * add Build-Depends to dpkg-dev (>= 1.16.1~)
+  * delete the debian/dir file
+  * change /usr/doc to /usr/share/doc in README.Debian and manpage
+  * fix old changelog entry syntax (from 20 Nov 1999 netry)
+  * switch changes from previous maintainer to quilt system
+  * add link to homepage (Closes: #697227)
+  * upload sponsored by Petter Reinholdtsen
+
+ -- Slavko <linux@slavino.sk>  Sat, 01 Feb 2014 16:15:05 +0100
+
+nqc (3.1.r6-1) unstable; urgency=low
+
+  * New upstream release.
+  
+  * Apply Makefile fix from
+    http://launchpadlibrarian.net/8071303/ubuntu_patch.txt.  Thanks to
+    Michael Wales <mwales3@gmail.com> for submitting this fix.
+  
+  * Minor packaging changes to upgrade to Debhelper compatibility level 5.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Wed, 13 Jun 2007 06:07:50 -0700
+
+nqc (2.5.r3-5) unstable; urgency=low
+
+  * compiler/Error.h, compiler/Error.c: Do a more thorough job of tracking
+    down the real problem with the fData member.  I think this will really
+    fix the FTBFS.  Closes: #287812.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Fri, 18 Aug 2006 10:27:59 -0700
+
+nqc (2.5.r3-4) unstable; urgency=low
+
+  * compiler/Error.h: Change Error's fData member from type `int' to
+    `intptr_t', to ensure that it has enough room for a pointer.  Closes:
+    #287812.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Tue, 15 Aug 2006 14:42:56 -0700
+
+nqc (2.5.r3-3) unstable; urgency=low
+
+  * Apply patch from Andreas Jochens <aj@andaco.de> to make NQC compile
+    under GCC 3.4.  Closes: #265532.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Sat,  4 Sep 2004 14:31:12 -0700
+
+nqc (2.5.r3-2) unstable; urgency=low
+
+  * Use /dev/usb/usblegotower0 as default USB device.  Closes: #233111.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Sat, 21 Feb 2004 19:08:57 -0800
+
+nqc (2.5.r3-1) unstable; urgency=low
+
+  * New upstream release.
+
+  * Updated README.Debian and description to include USB instructions.
+    Please let me know if these are incorrect; I don't have a Mindstorms
+    set anymore and never had a USB set so I can't test it myself.
+  
+  * Added header legousbtower.h into new directory rcxlib/LegoUSB to make
+    it possible for everything to compile.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Sun, 15 Feb 2004 16:31:38 -0800
+
+nqc (2.5.r1-1) unstable; urgency=low
+
+  * New upstream release.  Closes: #197012.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Tue, 17 Jun 2003 22:38:13 -0700
+
+nqc (2.3.r1-4) unstable; urgency=low
+
+  * Use /dev/rcx as default serial port.  Thanks to Gustavo Laboreiro
+    <l11521@alunos.uevora.pt> for reporting this bug.
+
+ -- Ben Pfaff <pfaffben@debian.org>  Sun, 29 Sep 2002 14:22:15 -0700
+
+nqc (2.3.r1-3) unstable; urgency=low
+
+  * Change section from electronics to devel.
+
+ -- Ben Pfaff <blp@cs.stanford.edu>  Thu, 11 Oct 2001 12:12:56 -0700
+
+nqc (2.3.r1-2) unstable; urgency=low
+
+  * Add Build-Depends: on bison, flex.  Closes: #115146.
+
+ -- Ben Pfaff <blp@cs.stanford.edu>  Wed, 10 Oct 2001 18:41:10 -0700
+
+nqc (2.3.r1-1) unstable; urgency=low
+
+  * New upstream version.  Closes: #106397.
+  
+  * Debian package completely redone.
+  
+  * No longer includes documentation or examples because there's no
+    license on the ones available.  If someone will get Dave Baum to add a
+    license then I'll add them back in.
+
+ -- Ben Pfaff <blp@cs.stanford.edu>  Mon,  8 Oct 2001 18:31:58 -0700
+
+nqc (2.0.2-2) unstable; urgency=low
+
+  * New upstream documentation.  Fixes Bug#50669.  Thanks to Jim Studt
+    <jim@federated.com> for reporting this.
+
+ -- Ben Pfaff <blp@gnu.org>  Sat, 20 Nov 1999 01:11:32 -0500
+
+nqc (2.0.2-1) unstable; urgency=low
+
+  * New upstream version.
+  
+  * Migrate to /usr/share/doc.
+
+ -- Ben Pfaff <blp@gnu.org>  Sat, 13 Nov 1999 12:11:51 -0500
+
+nqc (1.3-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Ben Pfaff <blp@gnu.org>  Sat, 10 Jul 1999 15:06:21 -0400
+
+nqc (1.0b4-5) unstable; urgency=low
+
+  * Move to section `electronics'.
+
+ -- Ben Pfaff <blp@gnu.org>  Thu, 28 Jan 1999 21:22:42 -0500
+
+nqc (1.0b4-4) unstable; urgency=low
+
+  * Remove -m486 (Bug #31710).
+
+ -- Ben Pfaff <blp@gnu.org>  Sun, 17 Jan 1999 14:24:12 -0500
+
+nqc (1.0b4-3) unstable; urgency=low
+
+  * Include text of MPL in debian/copyright.
+
+ -- Ben Pfaff <blp@gnu.org>  Mon,  4 Jan 1999 22:05:11 -0500
+
+nqc (1.0b4-2) unstable; urgency=low
+
+  * Added HTML documentation.
+
+  * Added example programs.
+
+ -- Ben Pfaff <blp@gnu.org>  Sun, 27 Dec 1998 10:11:07 -0500
+
+nqc (1.0b4-1) unstable; urgency=low
+
+  * New package.
+
+ -- Ben Pfaff <blp@gnu.org>  Sat, 26 Dec 1998 18:18:39 -0500
+
+

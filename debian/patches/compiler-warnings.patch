@@ -1,0 +1,36 @@
+Description: Fix some compiler warnings.
+Author: Petter Reinholdtsen <pere@debian.org>
+Forwarded: no
+Reviewed-By: Petter Reinholdtsen <pere@debian.org>
+Last-Update: 2017-08-02
+
+Index: nqc-git/mkdata/mkdata.cpp
+===================================================================
+--- nqc-git.orig/mkdata/mkdata.cpp
++++ nqc-git/mkdata/mkdata.cpp
+@@ -6,10 +6,10 @@ using std::fopen;
+ using std::strcmp;
+ 
+ //static char *sTestArgs[]={"mkdata", "rcx.nqh", "rcx_data.h", "rcxData" };
+-static char *sTestArgs[]={"mkdata", "-s", "fastdl.srec", "RCX_nub.h", "rcxNub" };
++static const char *sTestArgs[]={"mkdata", "-s", "fastdl.srec", "RCX_nub.h", "rcxNub" };
+ 
+ 
+-int main(int argc, char **argv)
++int main(int argc, const char **argv)
+ {
+ 	FILE *src;
+ 	FILE *dst;
+diff --git a/nqc/nqc.cpp b/nqc/nqc.cpp
+index e4b14a8..73dc2b3 100644
+--- a/nqc/nqc.cpp
++++ b/nqc/nqc.cpp
+@@ -1085,7 +1085,7 @@ void PrintError(RCX_Result error, const char *filename)
+ 
+ void PrintVersion()
+ {
+-	fprintf(STDERR,"nqc version %s (built "__DATE__", " __TIME__")\n",
++	fprintf(STDERR,"nqc version %s (built " __DATE__ ", " __TIME__")\n",
+ 		VERSION_STRING);
+ 	fprintf(STDERR,"     Copyright (C) 2005 John Hansen.  All Rights Reserved.\n");
+ }

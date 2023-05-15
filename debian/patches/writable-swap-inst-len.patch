@@ -1,0 +1,26 @@
+Description: Make sure swan code do not segfault.
+ The Swan target try to update a 'const' array at run time.  This do
+ not work with modern compilers and operating systems, which make
+ the 'const' data segment read only.  Remove the 'const' statement
+ to make the nSwanInstructionLength array writable at run time.
+Author: Petter Reinholdtsen <pere@hungry.com>
+Bug-Debian: https://bugs.debian.org/848962
+Forwarded: no
+Reviewed-By: Petter Reinholdtsen <pere@hungry.com>
+Last-Update: 2017-08-02
+
+diff --git a/rcxlib/RCX_Disasm.cpp b/rcxlib/RCX_Disasm.cpp
+index ee38608..0229e11 100644
+--- a/rcxlib/RCX_Disasm.cpp
++++ b/rcxlib/RCX_Disasm.cpp
+@@ -489,8 +489,8 @@ public:
+ 	long	fOffset;
+ };
+ 
+-// Swan support code
+-const ubyte nSwanInstructionLength[256] = {
++// Swan support code.  This array is updated at runtime.
++ubyte nSwanInstructionLength[256] = {
+   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,

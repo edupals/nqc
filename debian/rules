@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/buildflags.mk
+CFLAGS+=$(CPPFLAGS)
+
+PACKAGE = $(shell dh_listpackages)
+TMP     = $(CURDIR)/debian/$(PACKAGE)
+
+%:
+	dh $@ 
+
+override_dh_auto_build:
+	echo $(CFLAGS)
+	$(MAKE) DEFAULT_SERIAL_NAME='"/dev/rcx"'
+
+override_dh_auto_install:
+
+override_dh_installman:
+	dh_installman
+	mv $(TMP)/usr/share/man/man1/nqc-man-2.1r1-0.1 $(TMP)/usr/share/man/man1/nqc.1
+
+override_dh_installexamples:
+	dh_installexamples
+	chmod -x $(TMP)/usr/share/doc/nqc/examples/test.nqc

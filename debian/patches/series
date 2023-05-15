@@ -1,0 +1,7 @@
+fix-mapage.patch
+fix-makefile-hardenning.patch
+apply-rcx_changes.patch
+apply-legousbtower.patch
+fix-errors.h.patch
+writable-swap-inst-len.patch
+compiler-warnings.patch

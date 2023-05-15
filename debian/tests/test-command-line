@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+at_exit() {
+    echo "info: test exiting"
+}
+
+trap at_exit INT TERM EXIT
+
+cd $ADTTMP
+retval=0
+
+cat <<EOF > test.nqc
+task main()
+{
+}
+EOF
+
+for target in RCX CM Scout RCX2 Spy Swan; do
+    echo "** testing target $target **"
+    if $VALGRIND nqc -T$target -L test.nqc; then
+	echo "success: compiling with target $target worked"
+    else
+	echo "failure: compiling with target $target returned error"
+	retval=1
+    fi
+done
+
+exit $retval

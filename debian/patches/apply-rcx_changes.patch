@@ -1,0 +1,28 @@
+Author: Slavko <linux@slavino.sk>
+Description: Apply defaul serial name to /dev/rcx
+--- a/platform/PSerial_unix.cpp
++++ b/platform/PSerial_unix.cpp
+@@ -38,7 +38,7 @@
+ #include "PSerial.h"
+ 
+ #ifndef DEFAULT_SERIAL_NAME
+-#define DEFAULT_SERIAL_NAME "/dev/ttyS0"
++#define DEFAULT_SERIAL_NAME "/dev/rcx"
+ #endif
+ 
+ 
+--- a/readme.txt
++++ b/readme.txt
+@@ -77,9 +77,9 @@
+ 	
+ Linux:
+ 	The syntax for setting environment variables is shell specific.  By
+-	default nqcc uses "/dev/ttyS0" as the device name for the serial
+-    port.  If you are using the second serial port, then "/dev/ttyS1"
+-    should work.  Other device drivers may or may not work depending on if
++	default nqcc uses "/dev/rcx" as the device name for the serial
++    port.  You should set this up as a symlink to one of the "/dev/ttyS?"
++    devices.  Other device drivers may or may not work depending on if
+     they implement the expected ioctl's to setup the baud rate, parity,
+     etc.
+ 
